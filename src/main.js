@@ -6,7 +6,7 @@ import router from './router'
 import store from './store'
 import utils from './utils/index' //全局
 Vue.config.productionTip = false
-
+import 'github-markdown-css';
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

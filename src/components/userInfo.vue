@@ -17,12 +17,19 @@
 
 
 <script>
-
-
+  import {mapState} from 'vuex'
+  import {LOGIN_OUT} from './../store/types'
   export default {
-    methods: {},
-
-    computed: {},
+    methods: {
+      handleLoginOut(){
+        //退出登录
+        this.$store.commit(LOGIN_OUT);
+        this.$router.push({name: 'list'});
+      }
+    },
+    computed: {
+      ...mapState(['userInfo'])
+    },
   }
 </script>
 

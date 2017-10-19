@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="header">
     <span class="page-cover" @click="toggleMenu" v-if="show"></span>
     <header class="header-bar">
       <span class="menu-btn" @click="toggleMenu"></span>

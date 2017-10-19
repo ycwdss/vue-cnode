@@ -1,5 +1,6 @@
 <template>
   <nav class="menu-bar" :class="{'show': show}">
+    <user-info></user-info>
     <ul class="menu-list">
       <li class="menu-item">
         <router-link class="" :to="{name: 'list', query: {tab: 'all'}}"><i class="iconfont icon-quanbu"></i>全部
@@ -30,8 +31,10 @@
   </nav>
 </template>
 <script>
+  import {mapState} from 'vuex'
   import './../assets/css/menu.less'
   import UserInfo from './userInfo';
+  import {messageCount} from './../api/fetch'
 
   export default {
     data() {
@@ -41,6 +44,23 @@
     },
     props: {
       show: Boolean
+    },
+    computed: {
+      ...mapState(['userInfo'])
+    },
+    mounted(){
+      this.getMessageCount();
+    },
+    methods: {
+      getMessageCount() {
+        if (this.userInfo.loginname) {
+          messageCount({accesstoken: this.userInfo.accesstoken}).then((res) => {
+            if (res.success) {
+              this.messageCount = res.data;
+            }
+          })
+        }
+      }
     },
     components: {
       UserInfo

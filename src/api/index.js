@@ -29,7 +29,7 @@ instance.interceptors.request.use((config) => {
 // respone拦截器
 instance.interceptors.response.use(
   //在这里对返回的数据进行处理
-  response => response,
+  response => response.data,
   error => {
     return Promise.reject(error)
   })
